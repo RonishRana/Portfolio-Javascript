@@ -10,19 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const counterText = document.getElementById('txt-counter');
 
         // Check if the number is even or odd and update the content
-        if (count % 2 === 0) {
-            counterText.innerHTML = `Number: ${count} (Even)`;
-        } else {
-            counterText.innerHTML = `Number: ${count} (Odd)`;
-        }
+        counterText.innerHTML = `Number: ${count} (${count % 2 === 0 ? 'Even' : 'Odd'})`;
 
         // Apply corresponding class
         counterText.classList.remove('even', 'odd');
-        if (count % 2 === 0) {
-            counterText.classList.add('even');
-        } else {
-            counterText.classList.add('odd');
-        }
+        counterText.classList.add(count % 2 === 0 ? 'even' : 'odd');
     };
 
     // For loop to populate the ordered list with 100 items
@@ -38,22 +30,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     navLinks.forEach(link => {
         link.addEventListener('mouseover', function () {
-            if (this.getAttribute('href') === '#hobbies') {
-                this.textContent = 'Selected Hobbies';
-            } else if (this.getAttribute('href') === '#reasons') {
-                this.textContent = 'Selected Reasons';
-            }
+            this.textContent = this.getAttribute('href') === '#hobbies' ? 'Selected Hobbies' : 'Selected Reasons';
         });
 
         link.addEventListener('mouseleave', function () {
             // Revert to regular text
-            if (this.getAttribute('href') === '#hobbies') {
-                this.textContent = 'Hobbies';
-            } else if (this.getAttribute('href') === '#reasons') {
-                this.textContent = 'Reasons';
-            }
+            this.textContent = this.getAttribute('href') === '#hobbies' ? 'Hobbies' : 'Reasons';
         });
     });
+
     // Alert button functionality
     const alertButton = document.createElement('button');
     alertButton.textContent = 'Click me for an alert';
